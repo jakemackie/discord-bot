@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { Client, IntentsBitField } = require("discord.js");
 const eventHandler = require("./handlers/eventHandler");
+const { healthCheck } = require("./database/db");
 
 const client = new Client({
   intents: [
@@ -10,6 +11,8 @@ const client = new Client({
     IntentsBitField.Flags.MessageContent,
   ],
 });
+
+healthCheck();
 
 eventHandler(client);
 
