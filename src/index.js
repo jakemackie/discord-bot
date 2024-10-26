@@ -14,4 +14,12 @@ client.on("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
+client.on("interactionCreate", (interaction) => {
+  if (!interaction.isCommand()) return;
+
+  if (interaction.commandName === "test") {
+    interaction.reply("Test command works!");
+  }
+});
+
 client.login(process.env.TOKEN);
