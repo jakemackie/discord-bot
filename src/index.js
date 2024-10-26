@@ -1,5 +1,6 @@
 require("dotenv").config();
 const { Client, IntentsBitField } = require("discord.js");
+const eventHandler = require("./handlers/eventHandler");
 
 const client = new Client({
   intents: [
@@ -10,16 +11,6 @@ const client = new Client({
   ],
 });
 
-client.on("ready", (client) => {
-  console.log(`Logged in as ${client.user.tag}`);
-});
-
-client.on("interactionCreate", (interaction) => {
-  if (!interaction.isCommand()) return;
-
-  if (interaction.commandName === "test") {
-    interaction.reply("Test command works!");
-  }
-});
+eventHandler(client);
 
 client.login(process.env.TOKEN);
